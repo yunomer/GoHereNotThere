@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, createRef } from 'react';
 import {
   CircularProgress,
   Grid,
@@ -12,10 +12,13 @@ import {
 import PlaceDetails from '../PlaceDetails/PlaceDetails';
 import useStyles from './styles';
 
-const List = ({ places }) => {
+const List = ({ places, childClicked }) => {
   const classes = useStyles();
   const [type, setType] = useState('resturants');
   const [rating, setRating] = useState('');
+  const [elementRefs, setelementRefs] = useState([]);
+
+  useEffect(() => {}, [places]);
 
   return (
     <div className={classes.container}>
