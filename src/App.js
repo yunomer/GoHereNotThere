@@ -33,13 +33,15 @@ const App = () => {
   }, [rating]);
 
   useEffect(() => {
-    setisLoading(true);
-    getPlacesData(type, bounds.sw, bounds.ne).then((data) => {
-      setplaces(data);
-      setfilteredPlaces([]);
-      setisLoading(false);
-    });
-  }, [type, coordinates, bounds]);
+    if (bounds.sw && bounds.ne) {
+      setisLoading(true);
+      getPlacesData(type, bounds.sw, bounds.ne).then((data) => {
+        setplaces(data?.filter((place) => place.name && place.num_reviews > 0));
+        setfilteredPlaces([]);
+        setisLoading(false);
+      });
+    }
+  }, [type, bounds]);
 
   return (
     <>

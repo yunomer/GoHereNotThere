@@ -29,7 +29,6 @@ const List = ({
       .fill()
       .map((_, index) => elementRefs[index] || createRef());
     setelementRefs(refs);
-    console.log(elementRefs);
   }, [places]);
 
   return (
